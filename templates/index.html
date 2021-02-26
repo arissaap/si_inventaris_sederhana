@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12">
+		<div class="card ">
+			<div class="card-header ">
+				<h1 class="card-title">Selamat Datang, {% if user.is_authenticated %}{{user}}{% endif %}</h1>
+			</div>
+			<div class="card-body ">
+				<h1>Semoga harimu menyenangkan!</h1>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+<script>
+{% block script %}
+$(document).ready(function(){
+
+});
+{% endblock %}
+</script>

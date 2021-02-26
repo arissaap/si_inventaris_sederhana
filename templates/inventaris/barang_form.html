@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h4>Tambah Data Barang</h4>
+			</div>
+			<div class="x_content ">
+				<form method="POST" class="form-horizontal">
+					<div class="form-group">
+						{% csrf_token %}
+						{{ form|crispy }}
+					</div>
+					<button type="submit" class="save btn btn-primary pull-right">Simpan</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+<script>
+{% block script %}
+$(document).ready(function(){
+	//document.getElementById('id_tanggal_pembelian').type = 'date';
+	//document.getElementById('id_tanggal_maintenance_terakhir').type = 'date';
+	$('.dateinput').datetimepicker({
+		format: 'YYYY-MM-DD'
+	});
+});
+{% endblock %}
+</script>

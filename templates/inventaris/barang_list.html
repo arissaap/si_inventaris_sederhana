@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h4>Daftar Barang</h4>
+			</div>
+			<div class="x_content ">
+				<a href="{% url 'barang_add' %}" class="btn btn-primary btn-fill pull-right">Tambah Barang</a>
+				<table id="datatable" class="table table-hover table-striped">
+					<thead>
+					<tr>
+						<th>No</th>
+						<th>Nama Barang</th>
+						<th>Pembuat</th>
+						<th>Jenis</th>
+						<th>Spesifikasi</th>
+						<th>Aksi</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for d in data %}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{d.nama_barang}}</td>
+						<td>{{d.pembuat}}</td>
+						<td>{{d.jenis}}</td>
+						<td>{{d.spesifikasi}}</td>
+						<td>
+							<div class="btn-group">
+							<a href="{% url 'barang_edit' d.id %}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+							<a href="{% url 'barang_delete' d.id %}" class="btn btn-danger hapusItem"><i class="fa fa-trash"></i></a>
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+<script>
+{% block script %}
+	$(document).ready(function(){
+		$(".hapusItem").click(function () {
+				if(!confirm("Yakin ingin menghapus?")){
+					return false;
+				};
+			});
+	});
+{% endblock %}
+</script>

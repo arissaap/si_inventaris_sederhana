@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+	<div class="login_wrapper">
+		<div class="animate form login_form">
+			<section class="login_content">
+				{% if messages %}
+				{% for message in messages %}
+				<div class="alert alert-success">
+					<button class="close" data-close="alert"></button>
+					<span>{{message}}</span>
+				</div>
+				{% endfor %}
+				{% endif %}
+				<form class="login-form" action="" method="post">
+				<h1>Silahkan {% if state == 'Daftar' %} Daftar {% else %} Login {% endif %}</h1>
+					{% csrf_token %}
+					{{form|crispy}}
+					<div class="form-actions">
+						<button type="submit" class="btn btn-success pull-right"> Submit </button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+	{% endblock %}
+
+	{% block js %}
+	<script>
+$(document).ready(function(){
+    $(".hapusItem").click(function () {
+            if(!confirm("Yakin loooooh?")){
+                return false;
+            };
+        });
+});
+</script>
+	{% endblock js %}
